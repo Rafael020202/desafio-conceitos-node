@@ -17,6 +17,8 @@ function handleRequest(request, response, next) {
   return next();
 }
 
+app.use(handleRequest);
+
 const repositories = [];
 
 app.get("/repositories", (request, response) => {
@@ -60,7 +62,7 @@ app.delete("/repositories/:id", (request, response) => {
     return response.status(404).send();
   }
 
-  repositories.slice(repositoryIndex, 1);
+  repositories.splice(repositoryIndex, 1);
   return response.status(204).send();
 });
 
